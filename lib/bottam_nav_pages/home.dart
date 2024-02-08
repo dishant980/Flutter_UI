@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
           ), actions: [
             IconButton(
               icon: const Icon(Icons.notifications),
-              tooltip: 'Notification',
+              tooltip: 'Notify',
               onPressed: () {
                 
               },
