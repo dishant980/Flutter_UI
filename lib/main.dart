@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:foxtradeappnew/bottam_nav_pages/bottamnavbar.dart';
 import 'package:foxtradeappnew/profile.dart';
 import 'package:foxtradeappnew/setting.dart';
+import 'package:foxtradeappnew/splash.dart';
 
 
 void main() {
   runApp(
      const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Foxtrade(),
+      home: Splash(),
       
       
     ),
