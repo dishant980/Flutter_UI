@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Sign_button extends StatelessWidget {
-  const Sign_button({super.key});
+
+class Signbutton extends StatelessWidget {
+
+  final Function action;
+
+  
+  const Signbutton({super.key,required this.action});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () => handleButtonclick(action),
+      child: Container(
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
@@ -18,6 +25,16 @@ class Sign_button extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
       ),
+      ),
     );
   }
+  
+ 
 }
+
+handleButtonclick(Function action) {
+
+  
+}
+
+
