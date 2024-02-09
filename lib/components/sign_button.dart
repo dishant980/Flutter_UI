@@ -6,7 +6,7 @@ class Signbutton extends StatelessWidget {
   final Function action;
 
   
-  const Signbutton({super.key,required this.action});
+  const Signbutton({super.key,required this.action, required onTap});
 
   @override
   Widget build(BuildContext context) {

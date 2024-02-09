@@ -1,5 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:foxtradeappnew/bottam_nav_pages/home.dart';
 import 'package:foxtradeappnew/components/sign_button.dart';
+import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
    const Login({super.key});
@@ -77,8 +81,8 @@ class Login extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 Signbutton(
-                  onTap:
-                  ),
+                  onTap: handleButtonclick(action)
+                   ),
 
 
 
@@ -107,5 +111,19 @@ class Login extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  action() {
+    if(username.isEmpty || Password.isEmpty){
+
+      ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+      const SnackBar(
+        content: Text('Please fill in all fields correctly.'),
+      ),
+    );
+    }
+    else{
+        Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context)=> const Home()),);
+    }
   }
 }
