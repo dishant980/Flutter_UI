@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foxtradeappnew/components/sign_button.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+   const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class Login extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 20, right: 20, top: 10),
             width: width,
-            child: const Column(
+            child: const  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -76,7 +76,12 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5),
-                Sign_button(),
+                Signbutton(
+                  onTap:
+                  ),
+
+
+
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.all(8.0),
