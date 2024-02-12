@@ -13,35 +13,37 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Menu'),
-              centerTitle: true,
-               leading: IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()),
-              );
-            },
-          ), actions: [
-            IconButton(
-              icon: const Icon(Icons.notifications),
-              tooltip: 'Notification',
+          return SingleChildScrollView(
+            child: Scaffold(
+              appBar: AppBar(
+                title: const Text('Menu'),
+                centerTitle: true,
+                 leading: IconButton(
+              icon: const Icon(Icons.person),
               onPressed: () {
-                
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()),
+                );
               },
-            ),
-            IconButton(
-                icon: const Icon(Icons.settings),
-                tooltip: 'Settings',
+            ), actions: [
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                tooltip: 'Notification',
                 onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const Setting()),);
-                }),
-          ],
-                         
-            ),
-            
-        
-    );
+                  
+                },
+              ),
+              IconButton(
+                  icon: const Icon(Icons.settings),
+                  tooltip: 'Settings',
+                  onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Setting()),);
+                  }),
+            ],
+                           
+              ),
+              
+                    
+                ),
+          );
   }
 }

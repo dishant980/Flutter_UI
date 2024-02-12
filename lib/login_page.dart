@@ -1,10 +1,7 @@
 
-
 import 'package:flutter/material.dart';
-import 'package:foxtradeappnew/bottam_nav_pages/home.dart';
 import 'package:foxtradeappnew/components/sign_button.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
+
 
 class Login extends StatelessWidget {
 
@@ -12,10 +9,10 @@ class Login extends StatelessWidget {
 final passwordController = TextEditingController();
     Login({super.key});
     
-      get onTap => const Home();
+    
     
       
-    
+  
       
 
   @override
