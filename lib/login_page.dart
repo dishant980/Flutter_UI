@@ -1,20 +1,15 @@
 
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:foxtradeappnew/components/sign_button.dart';
+import 'package:foxtradeappnew/bottam_nav_pages/home.dart';
+
 
 
 class Login extends StatelessWidget {
-
-  final usernameController = TextEditingController();
-final passwordController = TextEditingController();
-    Login({super.key});
+  const Login({super.key});
     
-    
-    
-      
-  
-      
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -47,68 +42,8 @@ final passwordController = TextEditingController();
                     'Enter your Email / Refer code & Password to login',
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
                   ),
-                  SizedBox(height: 40),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey)),
-                        labelText: 'Username',
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TextField(
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8))),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blueGrey)),
-                        labelText: 'Password',
-                        
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 2),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text('Forgot Password ?'),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Signbutton(),
-                
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '  Not a member? ',
-                          ),
-                        Text(
-                          'Register Now',
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.w800),
-                              
-                        ),
-                        
-                      ],
-                    ),
-                  ),
+                 SizedBox(height: 20),
+                LoginForm(),
                 ],
               ),
             ),
@@ -116,5 +51,78 @@ final passwordController = TextEditingController();
         ),
       ),
     );
+  }
+}
+
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
+
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            controller: _usernameController,
+            decoration: const InputDecoration(
+              labelText: 'Username',
+              border: OutlineInputBorder(),
+            ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter your username';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            controller: _passwordController,
+            obscureText: true,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              border: OutlineInputBorder(),
+            ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter your password';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                String username = _usernameController.text;
+                String password = _passwordController.text;
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Home()));
+                if (kDebugMode) {
+                  print('Logging in with $username and $password');
+                }
+              }
+            },
+            child:const Text('Login'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

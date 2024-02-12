@@ -12,7 +12,7 @@ class Profile extends StatelessWidget {
         appBar: AppBar(
           leading:  BackButton(onPressed:(){
             Navigator.pop(context);
-          }, color: Colors.white),
+          }, color: Colors.blueAccent),
         ),
         body: Center(
           child: Card(

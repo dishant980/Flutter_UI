@@ -11,7 +11,7 @@ class Setting extends StatelessWidget {
         appBar: AppBar(
           leading:  BackButton( onPressed: (){
             Navigator.pop(context);
-          }, color: Colors.white),
+          }, color: Colors.blueGrey),
           title: const Text('Setting'),
           
         ),

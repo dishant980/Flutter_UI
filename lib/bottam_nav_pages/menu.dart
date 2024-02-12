@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foxtradeappnew/profile.dart';
 import 'package:foxtradeappnew/setting.dart';
 
-
 class Menu extends StatefulWidget {
   const Menu({super.key});
 
@@ -13,8 +12,8 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
-          return SingleChildScrollView(
-            child: Scaffold(
+          return MaterialApp(
+            home: Scaffold(
               appBar: AppBar(
                 title: const Text('Menu'),
                 centerTitle: true,
@@ -38,12 +37,13 @@ class _MenuState extends State<Menu> {
                   onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const Setting()),);
                   }),
+
+               
             ],
                            
-              ),
-              
-                    
+              ),     
                 ),
+                 
           );
   }
 }

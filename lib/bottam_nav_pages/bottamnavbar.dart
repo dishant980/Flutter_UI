@@ -6,6 +6,7 @@ import 'finance.dart';
 import 'package:foxtradeappnew/shop.dart';
 import 'menu.dart';
 
+
 class BottamBar extends StatefulWidget {
   const BottamBar({super.key});
 
@@ -25,8 +26,8 @@ class _BottamBarState extends State<BottamBar> {
   ];
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      home: Scaffold(
+    return  
+       Scaffold(
 
         body: _widgetOptions[_selectedIndex],
 
@@ -54,7 +55,7 @@ class _BottamBarState extends State<BottamBar> {
         },
         
         ),
-      ),
-    );
+      );
+    
   }
 }
