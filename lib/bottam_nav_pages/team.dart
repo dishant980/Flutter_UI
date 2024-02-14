@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foxtradeappnew/bottam_nav_pages/bottamnavbar.dart';
 
 
 class Teams extends StatefulWidget {
@@ -19,8 +20,9 @@ class _TeamsState extends State<Teams> {
           Navigator.pop(context);
         }),
       ),
-      
-      )
+                    bottomNavigationBar: const BottamBar(),
+
+      ),
 
     );
   }

@@ -1,7 +1,6 @@
 
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foxtradeappnew/bottam_nav_pages/home.dart';
 
@@ -76,11 +75,13 @@ class _LoginFormState extends State<LoginForm> {
             controller: _usernameController,
             decoration: const InputDecoration(
               labelText: 'Username',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20))
+              ),
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter your username';
+                return 'Username';
               }
               return null;
             },
@@ -91,7 +92,9 @@ class _LoginFormState extends State<LoginForm> {
             obscureText: true,
             decoration: const InputDecoration(
               labelText: 'Password',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20))
+              ),
             ),
             validator: (value) {
               if (value!.isEmpty) {
@@ -102,27 +105,46 @@ class _LoginFormState extends State<LoginForm> {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
+            
+            style: ElevatedButton.styleFrom(fixedSize: const Size(200, 50),textStyle: const TextStyle(fontSize: 20)),
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 String username = _usernameController.text;
                 String password = _passwordController.text;
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Home()));
-                if (kDebugMode) {
-                  print('Logging in with $username and $password');
-                }
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()),);
+                
+               
               }
+              else
+              {
+                 ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please enter valid username and password.'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+              }
+              
             },
             child:const Text('Login'),
           ),
+         const SizedBox(height: 20,),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Not a Member?'),
+                TextButton(onPressed: (){
+            
+                }, child: const Text('Sign Up Here',selectionColor: Colors.cyanAccent,)
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
+  
 }

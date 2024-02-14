@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foxtradeappnew/bottam_nav_pages/bottamnavbar.dart';
 import 'package:foxtradeappnew/profile.dart';
 import 'package:foxtradeappnew/setting.dart';
 
@@ -41,7 +42,9 @@ class _MenuState extends State<Menu> {
                
             ],
                            
-              ),     
+              ),
+                            bottomNavigationBar: const BottamBar(),
+     
                 ),
                  
           );

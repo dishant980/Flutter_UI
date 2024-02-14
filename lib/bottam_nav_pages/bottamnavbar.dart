@@ -3,7 +3,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'home.dart';
 import 'team.dart';
 import 'finance.dart';
-import 'package:foxtradeappnew/shop.dart';
+import 'package:foxtradeappnew/bottam_nav_pages/shop.dart';
 import 'menu.dart';
 
 

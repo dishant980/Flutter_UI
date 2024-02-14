@@ -15,7 +15,7 @@ class Splash extends StatelessWidget {
         splash: Lottie.asset('splash_screen.json'),
         duration: 1000,
         nextScreen:  
-        Login(), 
+        const Login(), 
         splashIconSize: double.infinity, 
         backgroundColor: Colors.white, 
       ),
