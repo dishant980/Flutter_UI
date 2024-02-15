@@ -14,18 +14,19 @@ class Login extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white30,
+      backgroundColor: Colors.white70,
       body: SingleChildScrollView(
+        
         child: Column(
+        
           children: [
             Container(
-              margin: const EdgeInsets.only(left: 2, right: 2),
-              width: width,
-              height: height * 0.2,
+              height: 2,
+              
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/new_ban1.png'),
-                      fit: BoxFit.fitWidth)),
+                      image: AssetImage('assets/back_form.png'),
+                      fit: BoxFit.fitHeight)),
             ),
             Container(
               margin: const EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -69,7 +70,8 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
+        child: Column(
+        
         children: [
           TextFormField(
             controller: _usernameController,
@@ -135,7 +137,7 @@ class _LoginFormState extends State<LoginForm> {
               children: [
                 const Text('Not a Member?'),
                 TextButton(onPressed: (){
-            
+                  
                 }, child: const Text('Sign Up Here',selectionColor: Colors.cyanAccent,)
                 ),
               ],
