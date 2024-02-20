@@ -5,7 +5,6 @@ import 'package:foxtradeappnew/bottam_nav_pages/shop.dart';
 import 'package:foxtradeappnew/bottam_nav_pages/team.dart';
 import 'package:foxtradeappnew/profile.dart';
 import 'package:foxtradeappnew/setting.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Home extends StatefulWidget {

@@ -1,4 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:foxtradeappnew/bottam_nav_pages/home.dart';
@@ -27,7 +26,7 @@ class Login extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),
             ),
-            const LoginForm(),
+             LoginForm(),
           ],
         ),
       ),
@@ -35,8 +34,10 @@ class Login extends StatelessWidget {
   }
 }
 
+
+
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const  LoginForm({Key? key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -46,6 +47,31 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  String _welcomeMessage = '';
+  late FocusNode _focusNode;
+  bool _isButtonPressed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _onFocusChange() {
+    if (!_focusNode.hasFocus) {
+      setState(() {
+        _welcomeMessage = '';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +80,22 @@ class _LoginFormState extends State<LoginForm> {
       child: Padding(
         padding: const EdgeInsets.only(top: 150),
         child: Container(
-          margin: EdgeInsets.only(left: 20, right: 20),
+          margin: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
               TextFormField(
                 controller: _usernameController,
+                focusNode: _focusNode,
                 decoration: const InputDecoration(
                   labelText: 'Email / Refer Code',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 ),
+                onChanged: (value) {
+                  setState(() {
+                    _welcomeMessage = 'Welcome, $value';
+                  });
+                },
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Username';
@@ -78,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
                 decoration: const InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -88,44 +120,63 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(200, 50),
-                    textStyle: const TextStyle(fontSize: 20)),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    String username = _usernameController.text;
-                    String password = _passwordController.text;
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Home()),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content:
-                            Text('Please enter valid username and password.'),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  }
+              GestureDetector(
+                onTapDown: (_) {
+                  setState(() {
+                    _isButtonPressed = true;
+                  });
                 },
-                child: Text('Login', style: GoogleFonts.inter()),
+                onTapUp: (_) {
+                  setState(() {
+                    _isButtonPressed = false;
+                  });
+                  _onLoginButtonPressed();
+                },
+                onTapCancel: () {
+                  setState(() {
+                    _isButtonPressed = false;
+                  });
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 1000),
+                  width: 200,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: _isButtonPressed ? Colors.blue[900] : Colors.blue,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Login',
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(
-                height: 20,
+              const SizedBox(height: 20),
+              Text(
+                _welcomeMessage,
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              const SizedBox(height: 20),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Not a Member?', style: GoogleFonts.inter()),
                     TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Sign Up Here',
-                          selectionColor: Colors.cyanAccent,
-                        )),
+                      onPressed: () {},
+                      child: const Text(
+                        'Sign Up Here',
+                        style: TextStyle(color: Colors.cyanAccent),
+                      ),
+                    ),
                   ],
                 ),
               )
@@ -134,5 +185,23 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
+  }
+
+  void _onLoginButtonPressed() {
+    if (_formKey.currentState!.validate()) {
+      String username = _usernameController.text;
+      String password = _passwordController.text;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Home()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter valid username and password.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
   }
 }

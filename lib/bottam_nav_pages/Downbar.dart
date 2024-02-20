@@ -7,7 +7,7 @@ import 'package:foxtradeappnew/bottam_nav_pages/shop.dart';
 import 'menu.dart';
 
 class DownBar extends StatefulWidget {
-   DownBar({super.key});
+  const DownBar({super.key});
 
   @override
   State<DownBar> createState() => _DownBarState();
